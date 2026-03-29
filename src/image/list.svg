@@ -1,0 +1,11 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.5 2.5H47.5" stroke="black" stroke-width="5" stroke-linecap="square" stroke-linejoin="bevel"/>
+<path d="M20.5 11.5H43.5" stroke="black" stroke-width="5" stroke-linecap="square" stroke-linejoin="bevel"/>
+<path d="M20.5 20.5H47.5" stroke="black" stroke-width="5" stroke-linecap="square" stroke-linejoin="bevel"/>
+<path d="M20.5 29.5H43.5" stroke="black" stroke-width="5" stroke-linecap="square" stroke-linejoin="bevel"/>
+<path d="M20.5 38.5H47.5" stroke="black" stroke-width="5" stroke-linecap="square" stroke-linejoin="bevel"/>
+<path d="M20.5 47.5H43.5" stroke="black" stroke-width="5" stroke-linecap="square" stroke-linejoin="bevel"/>
+<path d="M11.5 2.5H2.5V11.5H11.5V2.5Z" stroke="black" stroke-width="5" stroke-miterlimit="10" stroke-linecap="square"/>
+<path d="M11.5 20.5H2.5V29.5H11.5V20.5Z" stroke="black" stroke-width="5" stroke-miterlimit="10" stroke-linecap="square"/>
+<path d="M11.5 38.5H2.5V47.5H11.5V38.5Z" stroke="black" stroke-width="5" stroke-miterlimit="10" stroke-linecap="square"/>
+</svg>
