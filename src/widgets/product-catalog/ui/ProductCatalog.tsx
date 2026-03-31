@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { products } from "@/entities/product/model/products";
 import gridIcon from "@/image/grid.svg";
 import listIcon from "@/image/list.svg";
@@ -14,8 +15,33 @@ function getIconSrc(icon: string | { src: string }) {
 }
 
 export function ProductCatalog() {
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-  const [viewMode, setViewMode] = useState<ViewMode>("list");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const [selectedFilters, setSelectedFilters] = useState<string[]>(() => {
+    const filterParams = searchParams.getAll("filter");
+    return filterParams.length > 0 ? filterParams : [];
+  });
+
+  const [viewMode, setViewMode] = useState<ViewMode>(() => {
+    const modeParam = searchParams.get("view");
+    return modeParam === "grid" || modeParam === "list" ? modeParam : "list";
+  });
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    selectedFilters.forEach((filter) => params.append("filter", filter));
+
+    params.set("view", viewMode);
+
+    const currentUrl = window.location.pathname + window.location.search;
+    const newUrl = window.location.pathname + "?" + params.toString();
+
+    if (currentUrl !== newUrl) {
+      router.push(`?${params.toString()}`, { scroll: false });
+    }
+  }, [selectedFilters, viewMode, router]);
 
   const filteredProducts = useMemo(() => {
     if (selectedFilters.length === 0) {
@@ -23,7 +49,7 @@ export function ProductCatalog() {
     }
 
     return products.filter((product) =>
-      selectedFilters.includes(product.category)
+      selectedFilters.includes(product.category),
     );
   }, [selectedFilters]);
 
@@ -31,7 +57,7 @@ export function ProductCatalog() {
     setSelectedFilters((prevFilters) =>
       prevFilters.includes(filter)
         ? prevFilters.filter((item) => item !== filter)
-        : [...prevFilters, filter]
+        : [...prevFilters, filter],
     );
   };
 
